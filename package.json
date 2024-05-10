@@ -1,0 +1,14 @@
+{
+  "name": "notation",
+  "version": "1.0.0",
+  "description": "Notation application initial commit",
+  "main": "main.js",
+  "scripts": {
+    "test": "electron ."
+  },
+  "author": "Brandon Cozart",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^30.0.3"
+  }
+}
