@@ -35,7 +35,7 @@ const template = [
       submenu: [
         {label: 'Save', click: () => saveFile()},
         {label: 'Save as', click: () => saveFile()}, 
-        {label: 'Open File Location'}
+        {label: 'Open File Location', click: () => openFile()}
       ]
     },
     {
@@ -62,7 +62,6 @@ function configureMenuTemplate(){
   }
 
 ipcMain.on('file-request', (event, data) => {
-  console.log(data);
     dialog.showSaveDialog({
       title: '',
       defaultPath: '',
@@ -77,7 +76,7 @@ ipcMain.on('file-request', (event, data) => {
       console.log(file.canceled);
       if (!file.canceled) {
           fs.writeFile(file.filePath.toString(),
-          "textValue", function (err) {
+          data.toString(), function (err) {
                   if (err) throw err;
                   console.log('Saved!');
               });
@@ -86,3 +85,14 @@ ipcMain.on('file-request', (event, data) => {
       console.log(err)
   });
 });
+
+function openFile(){
+  dialog.showOpenDialog({
+  properties: ['openFile']
+}).then(result => {
+  console.log(result.canceled)
+  console.log(result.filePaths)
+}).catch(err => {
+  console.log(err)
+})
+}
