@@ -61,6 +61,10 @@ function configureMenuTemplate(){
 
   }
 
+ipcMain.on('open-file-request', (event, data) =>{
+  openFile();
+})
+
 ipcMain.on('file-request', (event, data) => {
     dialog.showSaveDialog({
       title: '',
